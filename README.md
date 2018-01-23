@@ -118,33 +118,59 @@ git commit --amend
 来修改当前 commit. 注意不要在该 commit 已经推送到远程仓库之后再进行 git commit --amend 操作, 因为这个操作会改变 commit hash 值并覆盖原 commit.
 ## 20. commit in future
 ```
-git commit --date=2018-01-21
+git commit --date 2018-01-21
 ```
-为 commit 提供一个未来的时间, 时间格式接受多种, 可以简短
+为 commit 提供一个未来的时间, 时间格式接受多种, 例如 2018-01-23 这样的, 在 linux 系统下可以直接使用 date -R 命令来查看当前时间, 在 windows 系统下可以使用 date 命令来查看日期.
+可以使用简短的 2018-01-21, 也可以接受 Mon, 3 Jul 2006 17:18:43 +0200, 2006-07-03 17:18:43 +0200, Mon Jul 3 15L18:43 2006 这样的时间格式. 甚至可以接受 --date=format:relative:5.hours.ago 这样的相对时间.
+所以本关在使用 git commit --date 的时候使用一个未来的时间即可.
 ## 21. reset
 ```
+git status
+git log // 通过 git log 查看 to_commit_first.rb 文件提交的 commit hash
+git reset ${to_commit_first.rb commit hash}
+git status // 确认 first 文件被 add, second 文件没有 staged
+git commit -m "add first"
 ```
+本关要求将缓存区的记录回退到 to_commit_first.rb 文件提交的时候, 不缓存 to_commit_second.rb 的修改, 所以通过 git reset 命令, 修改记录回退到想要的时间.
+当然回退操作也可以通过 git reset HEAD^, HEAD^ 的意思就是将 HEAD 指针回退到上一步.
 ## 22. reset soft
 ```
+git reset --soft HEAD^
 ```
+本关要求回退上一步的 commit, 但是保留索引(index), 而 reset 有三个参数: soft, mixed, hard. soft 会将记录回退, 但是不将索引, 工作区的更改覆盖, mixed 会将记录与索引回退, 但是
+不覆盖工作区的更改, hard 是完全将修改抛弃, 记录索引工作区的内容会全部被覆盖.
 ## 23. checkout file
 ```
+git checkout -- config.rb
 ```
+本关要求将 config.rb 的工作区修改全部覆盖, 不做保留, 保持与之前的文件内容一致.使用 git checkout 命令, 通过设置 -- filename 来保证只从远端拉取 config.rb 文件覆盖.
 ## 24. remote
 ```
+git remote
 ```
+查看 git 仓库添加的远程仓库名, 本关使用 git remote 查看并记录下远程仓库名回答问题.
 ## 25. remote url
 ```
+git remote -v
 ```
+和上一关基本一致, 添加 -v 参数可以查看远程仓库的仓库链接, 将远程仓库复制下来回答问题.
 ## 26. pull
 ```
+git pull origin master
 ```
+使用 git pull 命令从远程仓库拉取代码.
 ## 27. remote add
 ```
+git remote add origin https://github.com/githug/githug
 ```
+使用 git remote add 命令来添加远程仓库. origin 是远程仓库名, 后面接仓库 url.
 ## 28. push
 ```
+git status
+git rebase origin/master
+git push origin master
 ```
+
 ## 29. diff
 ```
 git diff app.rb
