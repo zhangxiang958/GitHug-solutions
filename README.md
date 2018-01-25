@@ -170,9 +170,39 @@ git status
 git rebase origin/master
 git push origin master
 ```
-
+使用 rebase 与远程的 master 分支进行变基合并, 然后将更改推送到远端.
 ## 29. diff
 ```
+git status
 git diff app.rb
 ```
-use git diff to find out 
+使用 git diff 命令查看 app.rb 文件哪里被修改了.查看哪一行被修改了, 本关答案为: 26. 其实 git diff 不能精确获得修改行数, 我们可以通过 git blame -p app.rb 查看, 可以在
+bash 中看到在 26 行会有 author: Not Committed Yet 这样的信息, 对应行就是修改了的行.
+## 30. blame
+```
+git blame config.rb
+```
+通过 git blame 命令快速找到指定文件的某一行最近修改的作者, 提交的 commit 及其时间.在团队协作中能够快速找到该行代码是谁改动了. 本关答案是 Spider Man.
+## 31. branch
+```
+git checkout -b test_code
+```
+本关是为了展示分支的好处, 通过新建一个分支, 我们则可以在分支上进行我们对功能的实验性代码的编写而不影响原分支.当然上面的分支是缩写, 你也可以:
+```
+git branch test_code
+git checkout test_code
+```
+## 32. checkout
+```
+git checkout -b my_branch
+```
+和上一关是一样的, 新建一个名为 my_branch 的分支.
+## 33. checkout_tag
+```
+git checkout v1.2
+```
+本关要求检出到 tag 为 v1.2 的分支代码上.
+## 34. checkout_tag_over_branch
+```
+
+```
