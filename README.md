@@ -204,5 +204,46 @@ git checkout v1.2
 本关要求检出到 tag 为 v1.2 的分支代码上.
 ## 34. checkout_tag_over_branch
 ```
-
+git tag -l
+git checkout tags/v1.2
+```
+本关要求将代码检出到 tag 为 v1.2 的代码,但是不能直接使用 git checkout v1.2, 因为仓库中有一个名为 v1.2 的分支, 如果直接使用会切换到 v1.2 分支上, 所以应该先使用 git log 来查看
+tag, 然后使用 git chekcout 切换 tag 代码.
+## 35. branch_at
+```
+git log
+git checkout -b test_branch <commit hash>
+```
+本关要求在最后一个 commit 前的一个 commit 上新建一个分支, 所以可以使用 git log 查看 commit 历史, 然后将需要的 commit hash 复制下来在 git checkout 中使用.
+## 36. delete_branch
+```
+git branch -d delete_me
+```
+删除分支可以使用 git branch 命令, 使用 -d 参数, 指定需要删除的分支名.
+## 37. push_branch
+```
+git push --set-upstream origin test_branch
+```
+本关要求只向远程仓库推送本地 test_branch 分支上的修改, 可以使用 --set-upstream 参数来达到目的.
+## 38. merge
+```
+git checkout master
+git merge feature
+```
+本关要求需要将 feature 分支合并到 master 分支, 如果不在 master 分支则需要先 git checkout master 分支然后再进行 merge.
+## 39. fetch
+```
+git fetch
+```
+从远程仓库获取最新的提交的更改, 但不与本地仓库合并.
+## 40. rebase
+```
+git checkout feature
+git add .
+git commit -m "ready to rebase"
+git rebase master
+```
+将 feature 分支通过 rebase master 达到历史记录为一条平滑的曲线.
+## 41. rebase_onto
+```
 ```
