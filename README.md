@@ -246,4 +246,75 @@ git rebase master
 将 feature 分支通过 rebase master 达到历史记录为一条平滑的曲线.
 ## 41. rebase_onto
 ```
+git rebase --onto master wrong_branch readme-update
 ```
+本关要求将 readme-update 自在 wrong_branch 切换出去之后的 commit patch 到 master 分支上. 这个在日常使用会经常用到, 我们可能正在开发着 feature
+分支, feature 分支是由 develop 分支切出来的, 接着我们有 develop 的 bug 需要修复, 然后我们忘记先 checkout 到 develop 分支, 然后再新建分支而是直接
+在 feature 分支上新建, 当我们发现分支建立在错误点的时候我们已经提交了好几个 commit 了, 所以我们可以使用 reabse --onto 来修复, 你可以理解为 git rebase 
+--onto base from to.
+## 42. repack
+```
+git repack -d
+```
+本关要求将一些废弃的包删除掉, git repack -d 可以清除一些垃圾打包对象.
+## 43. cherry-pick
+```
+git checkout new-feature
+git log
+git checkout master
+git cherry-pick <need commit hash>
+```
+本关中 new-feature 上面的 commit 并不符合要求需要删除, 但是唯独关于 readme 的修改想呈现在 master 分支, 所以需要 cherry-pick 命令. 所谓 cherry-pick
+命令就是将某些 commit 在某个分支上重演.我们需要先切换到 new-feature 分支上查看需要的 commit 对应的 hash 值, 然后在 master 分支上重演.
+## 44. grep
+```
+git grep --count TODO
+```
+本关要求统计出文件中还有多少个 TODO 字符串, 使用 git grep 命令可以进行搜索, --count 可以显示每个文件的符合的个数, 所以本关答案是 4.
+## 45. rename_commit
+```
+git log
+git rebase -i <commit hash>
+```
+本关要求修改 First commit 的 commit 信息(注意不是第一个 commit), 所以通过 git rebase -i 命令来修改, 注意后面跟的是你需要修改的 commit 的前一个
+commit 的 hash 值, 因为 git rebase -i 会将此 commit 之后的 commit 列出来, 然后在文本编辑器中修改命令为:
+```
+reword <commit hash> First coommit
+pick <commit hash> Second commit
+```
+默认两个都是 pick 命令, 修改第一个为 reword 命令, 保存后进入 first commit 的编辑状态, 修改后保存即可完成重命名 commit 信息.
+## 46. squash
+```
+git rebase -i <commit hash>
+```
+和上一关基本类似, 需要进入 reabse 交互式命令, 本关要求将几个 update readme 的 commit 合并到一个 commit 中, 所以这里的 commit hash 值需要是你需要编辑的 commit 前面的 commit hash, 也就是 initial commit 这个 commit.然后进入 commit 的编辑状态:
+```
+pick add readme
+squash ...
+squash ...
+squash ...
+```
+使用 squash 命令来将几个 commit 进行合并, 注意, 必须要有一个 pick 命令, 不然无法合并, 然后保存修改信息即可完成合并操作.
+## 47. merge_squash
+```
+git status
+git merge --squash long-feature-branch
+git status
+git commit -m "merge from long-feature-branch"
+```
+本关要求将 long-feature-branch 分支合并到 master 分支, 但是将 long-feature-branch 上的分支的 commit 合并为一个, 使用需要使用 git merge 的
+--squash 参数来进行合并.
+## 48. reorder
+```
+git log
+git rebase -i <commit hash>
+```
+本关需要将几个 commit 调换一下顺序, 所以需要使用 git rebase -i 命令, 这里的 commit hash 值是你需要编辑的几个 commit 前的一个 commit 对应的 hash,
+本关是 initial commit, 而进入编辑状态后只需要将 thrid commit 与 second commit 对换位置保存即可完成.
+## 49. biset
+
+## 50.
+## 51.
+## 52.
+## 53.
+## 54.
