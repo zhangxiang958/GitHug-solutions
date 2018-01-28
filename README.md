@@ -311,10 +311,65 @@ git rebase -i <commit hash>
 ```
 本关需要将几个 commit 调换一下顺序, 所以需要使用 git rebase -i 命令, 这里的 commit hash 值是你需要编辑的几个 commit 前的一个 commit 对应的 hash,
 本关是 initial commit, 而进入编辑状态后只需要将 thrid commit 与 second commit 对换位置保存即可完成.
-## 49. biset
-
-## 50.
-## 51.
-## 52.
-## 53.
-## 54.
+## 49. bisect
+```
+git log
+git bisect start master <first commit hash>
+git bisect run make test
+```
+所谓 git bisect 就是使用传说中的二分 debug 法来 debug. git bisect start 设定开始的节点.而 git bisect run 就是设定判断对错
+的标准, 使用 test 文件来判断每个 commit 的正确性以便找到 bug.
+本关只需要将运行以上命令后得到的 commit hash 的前 7 位回答问题即可.
+## 50. stage_lines
+```
+git status
+git add -p feature.rb
+```
+本关要求检出文件的部分修改进行提交, 所以可以使用 git add -p 命令, 然后选择 e 命令(即人工选择), 进入编辑界面, 将第二个 commit 的
+信息删除, 保存退出即可.
+## 51. find_old_branch
+```
+git reflog
+git checkout solve_world_hunger
+```
+本关要求回到之前的一个分支, 但是忘记了分支名, 我们可以使用 git reflog 来查找, git reflog 会记录一切本地做的 git 操作, 与 git
+log 的区别在于 git log 只会记录当前 head 指针所指的记录与它的祖先. git reflog 就像是一个撤销操作库, 记录你在本地的所有操作.
+## 52. revert
+```
+git log
+git revert <bad commit hash>
+```
+本关要求撤销 bad commit 作出的修改, 但是不能在本地使用 reset, 因为这个 commit 已经提交到远程仓库了, 所以需要使用 git revert
+来修复, revert 是使用一个反向 commit 来抵消之前 commit 作出的修改而不是将之前的 commit 删除.
+## 53. restore
+```
+git reflog
+git checkout <commit hash>
+```
+本关要求恢复之前删除的 commit.因为之前使用了 reset 来删除了该 commit 的工作, 但是后来反悔了需要恢复.我们可以借助 git reflog 查看
+之前的操作. 查看到需要恢复的对应的 commit hash 值, 就可以 git checkout 恢复了.
+## 54. conflict
+```
+git merge mybranch
+```
+本关要求解决冲突, 这关相信很多人在实际中已经遇过了.
+```
+<<<<<<< HEAD
+Categorized shoes by color
+=======
+Sat on a wall
+>>>>>>> mybranch
+```
+冲突如上, head 与 ==== 之间的就是本地我们的修改, 而 ==== 与 mybranch 之间的就是 mybranch 的修改, 解决的方法是保留你想要保留的
+部分, 然后删除冲突引入的字符(<, = 等等). 然后重新 git add 该文件, git commit 即可.本关将 master 的修改删除.
+```
+git add poem.txt
+git commit -m "解决冲突"
+```
+## 55. submodule
+```
+git submodule add https://github.com/jackmaney/githug-include-me
+```
+本关要求为仓库添加子模块, 使用 git submodule add 命令进行添加.
+## 56. contribute
+游戏到这里就结束了, 如果感兴趣可以为 githug 游戏添加自己的代码.
