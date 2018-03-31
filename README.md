@@ -72,7 +72,7 @@ git commit -m "delete deleteme.rb"
 在硬盘中删除了一个文件, 但是在 git 仓库中并没有删除掉, 可以使用 git add, git commit 来确实提交这个更改.在此之前需要用 git status 来查看到底删除了哪个文件, 本关是 **deleteme.rb**.
 ## 12. rm cached
 ```
-git rm deleteme.rb
+git rm deleteme.rb --cached
 ```
 这个场景很常见, 例如你不小心添加了某个你并不想添加到缓存区的文件, 所以需要将添加的记录删除, 但是不会将硬盘上的文件删除, 可以理解为一个简单版的 git reset.
 ## 13. stash
