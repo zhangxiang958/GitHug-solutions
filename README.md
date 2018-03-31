@@ -127,7 +127,7 @@ git commit --date 2018-01-21
 ```
 git status
 git log // 通过 git log 查看 to_commit_first.rb 文件提交的 commit hash
-git reset ${to_commit_first.rb commit hash}
+git reset to_commit_second.rb th_commit__hash //e.g: git reset to_commit_second.rb  6f86da265fda5ac1196934848edf260285271dda
 git status // 确认 first 文件被 add, second 文件没有 staged
 git commit -m "add first"
 ```
